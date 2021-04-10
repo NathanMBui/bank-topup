@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.abcbank</groupId>
+    <artifactId>abc-topup</artifactId>
+    <version>0.0.1</version>
+    <packaging>pom</packaging>
+
+    <profiles>
+        <profile>
+            <id>full</id>
+            <properties>
+                <excludeArtifacts>junit,hamcrest-core,slf4j-api</excludeArtifacts>
+                <excludeGroups>org.apache.logging.log4j</excludeGroups>
+                <includeGroups></includeGroups>
+                <includeArtifacts></includeArtifacts>
+            </properties>
+        </profile>
+        <profile>
+            <id>update</id>
+            <properties>
+                <excludeArtifacts></excludeArtifacts>
+                <excludeGroups></excludeGroups>
+                <includeGroups>com.abcbank</includeGroups>
+                <includeArtifacts></includeArtifacts>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <excludeArtifactIds>${excludeArtifacts}</excludeArtifactIds>
+                            <excludeGroupIds>${excludeGroups}</excludeGroupIds>
+                            <includeGroupIds>${includeGroups}</includeGroupIds>
+                            <includeArtifactIds>${includeArtifacts}</includeArtifactIds>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <modules>
+        <module>topup-service</module>
+    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>com.abcbank</groupId>
+            <artifactId>topup-service</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+    </dependencies>
+</project>
