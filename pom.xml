@@ -64,6 +64,8 @@
     </build>
     <modules>
         <module>topup-service</module>
+        <module>voucher-service</module>
+        <module>common</module>
     </modules>
     <dependencies>
         <dependency>

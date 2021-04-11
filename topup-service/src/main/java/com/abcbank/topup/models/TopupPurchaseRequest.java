@@ -1,10 +1,22 @@
 package com.abcbank.topup.models;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
 public class TopupPurchaseRequest {
 
+    @NotBlank(message = "paymentId is required")
     private String paymentId;
+
+    @NotBlank(message = "phoneNumber is required")
+    @Pattern(message = "phoneNumber is invalid",
+            regexp =  "^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$")
     private String phoneNumber;
+
+    @NotBlank(message = "provider is required")
     private String provider;
+
+    @NotBlank(message = "type is required")
     private String type;
 
     public TopupPurchaseRequest(String paymentId, String phoneNumber, String provider, String type) {
