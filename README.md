@@ -45,8 +45,8 @@ mvn clean install
 #### How to run
 Order | Service | Running Port | Command line
 --- | --- | --- | --- 
-`1` | voucher-service | 8081 | java -jar [bank-topup]/target/voucher-service-0.0.1.jar |
-`2` | topup-service | 8080 | java -jar [bank-topup]/target/topup-service-0.0.1.jar |
+`1` | voucher-service | 8081 | java -jar target/voucher-service-0.0.1.jar |
+`2` | topup-service | 8080 | java -jar target/topup-service-0.0.1.jar |
 
 #### How to use
 Using below curl commands
