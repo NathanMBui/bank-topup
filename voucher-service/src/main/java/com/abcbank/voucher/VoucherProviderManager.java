@@ -21,7 +21,7 @@ public class VoucherProviderManager {
             VoucherData data = new VoucherData();
             long randomNumber = System.currentTimeMillis();
             data.setCode(String.valueOf(randomNumber));
-            data.setDescription((randomNumber % 10000) + "MB for 30 days");
+            data.setDescription("2000MB for 30 days");
             data.setProvider(name);
             data.setType(type);
             return data;

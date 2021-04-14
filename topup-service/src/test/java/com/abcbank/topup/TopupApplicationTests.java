@@ -1,7 +1,7 @@
 package com.abcbank.topup;
 
-import com.abcbank.topup.models.TopupPurchaseRequest;
-import com.abcbank.topup.models.TopupPurchaseResponse;
+import com.abcbank.topup.api.models.TopupPurchaseRequest;
+import com.abcbank.topup.api.models.TopupPurchaseResponse;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
