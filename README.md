@@ -1,5 +1,5 @@
 ## BankTopup
-  Powered by: Spring Boot, JPA, JUnit
+  Powered by: Spring Boot, JPA (Hibernate), H2Database, JUnit
   
 ### Features:
   1. Purchase prepaid data for a SIM card by getting voucher code from 3rd parties.<br/> 
