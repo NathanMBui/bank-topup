@@ -27,7 +27,7 @@ public class VoucherStoreImpl implements VoucherStore {
     private VoucherRepository voucherRepository;
 
     @Override
-    public void storeVoucher(String username, TopupPurchaseRequest request, VoucherData voucherData) {
+    public void storeVoucherAsync(String username, TopupPurchaseRequest request, VoucherData voucherData) {
         User user = findUser(username);
         Voucher voucher = new Voucher();
         voucher.setCode(voucherData.getCode());

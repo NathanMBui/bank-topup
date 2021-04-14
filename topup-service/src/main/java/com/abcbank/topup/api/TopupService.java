@@ -1,6 +1,5 @@
 package com.abcbank.topup.api;
 
-import com.abcbank.topup.api.models.TopupGetVouchersRequest;
 import com.abcbank.topup.api.models.TopupPurchaseRequest;
 import com.abcbank.topup.api.models.VoucherData;
 import com.abcbank.topup.stores.VoucherStore;
@@ -25,12 +24,12 @@ public class TopupService implements TopupApi {
     @Override
     public VoucherData purchase(String username, TopupPurchaseRequest request) {
         VoucherData response = restTemplate.postForObject(externalUrl.getPurchaseVoucherUrl(), request, VoucherData.class);
-        voucherStore.storeVoucher(username, request, response);
+        voucherStore.storeVoucherAsync(username, request, response);
         return response;
     }
 
     @Override
-    public Collection<VoucherData> getVouchers(String username, TopupGetVouchersRequest request) {
-        return voucherStore.getVouchers(username, request.getPhoneNumber());
+    public Collection<VoucherData> getVouchers(String username, String phoneNumber) {
+        return voucherStore.getVouchers(username, phoneNumber);
     }
 }
