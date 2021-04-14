@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.abcbank</groupId>
-    <artifactId>abc-topup</artifactId>
+    <artifactId>bank-topup</artifactId>
     <version>0.0.1</version>
     <packaging>pom</packaging>
 
@@ -65,12 +65,16 @@
     <modules>
         <module>topup-service</module>
         <module>voucher-service</module>
-        <module>common</module>
     </modules>
     <dependencies>
         <dependency>
             <groupId>com.abcbank</groupId>
             <artifactId>topup-service</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.abcbank</groupId>
+            <artifactId>voucher-service</artifactId>
             <version>0.0.1</version>
         </dependency>
     </dependencies>

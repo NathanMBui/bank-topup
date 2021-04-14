@@ -1,9 +1,0 @@
-/Users/NathanBui/Documents/Workspace/Projects/bank-topup/topup-service/src/main/java/com/abcbank/topup/models/TopupGetVouchersResponse.java
-/Users/NathanBui/Documents/Workspace/Projects/bank-topup/topup-service/src/main/java/com/abcbank/topup/TopupApi.java
-/Users/NathanBui/Documents/Workspace/Projects/bank-topup/topup-service/src/main/java/com/abcbank/topup/TopupController.java
-/Users/NathanBui/Documents/Workspace/Projects/bank-topup/topup-service/src/main/java/com/abcbank/topup/validators/Validator.java
-/Users/NathanBui/Documents/Workspace/Projects/bank-topup/topup-service/src/main/java/com/abcbank/topup/TopupApplication.java
-/Users/NathanBui/Documents/Workspace/Projects/bank-topup/topup-service/src/main/java/com/abcbank/topup/models/TopupGetVouchersRequest.java
-/Users/NathanBui/Documents/Workspace/Projects/bank-topup/topup-service/src/main/java/com/abcbank/topup/models/VoucherData.java
-/Users/NathanBui/Documents/Workspace/Projects/bank-topup/topup-service/src/main/java/com/abcbank/topup/models/TopupPurchaseResponse.java
-/Users/NathanBui/Documents/Workspace/Projects/bank-topup/topup-service/src/main/java/com/abcbank/topup/models/TopupPurchaseRequest.java
