@@ -1,7 +1,6 @@
-package com.abcbank.topup.models;
+package com.abcbank.topup.api.models;
 
 public class TopupPurchaseResponse {
-
     private String code;
     private String type;
     private String provider;

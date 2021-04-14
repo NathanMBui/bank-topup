@@ -9,9 +9,11 @@ import com.abcbank.topup.repositories.UserRepository;
 import com.abcbank.topup.repositories.VoucherRepository;
 import com.abcbank.topup.stores.VoucherStore;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 /**
@@ -26,7 +28,7 @@ public class VoucherStoreImpl implements VoucherStore {
     private VoucherRepository voucherRepository;
 
     @Override
-    public void storeVoucher(String username, TopupPurchaseRequest request, TopupPurchaseResponse response) {
+    public void storeVoucherAsync(String username, TopupPurchaseRequest request, TopupPurchaseResponse response) {
         User user = findUser(username);
         Voucher voucher = new Voucher();
         voucher.setCode(response.getCode());

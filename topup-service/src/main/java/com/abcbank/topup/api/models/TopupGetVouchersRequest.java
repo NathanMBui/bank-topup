@@ -1,40 +1,23 @@
-package com.abcbank.topup.models;
+package com.abcbank.topup.api.models;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 public class TopupGetVouchersRequest {
-    private String phone;
-    private String provider;
-    private String type;
+
+    @NotBlank(message = "phoneNumber is required")
+    @Pattern(message = "phoneNumber is invalid",
+            regexp =  "^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$")
+    private String phoneNumber;
 
     public TopupGetVouchersRequest() {
     }
 
-    public TopupGetVouchersRequest(String phone, String provider, String type) {
-        this.phone = phone;
-        this.provider = provider;
-        this.type = type;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getProvider() {
-        return provider;
-    }
-
-    public void setProvider(String provider) {
-        this.provider = provider;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

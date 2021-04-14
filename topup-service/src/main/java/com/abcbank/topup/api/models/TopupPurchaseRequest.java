@@ -1,4 +1,4 @@
-package com.abcbank.topup.models;
+package com.abcbank.topup.api.models;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;

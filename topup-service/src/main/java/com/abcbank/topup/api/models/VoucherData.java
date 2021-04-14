@@ -1,4 +1,4 @@
-package com.abcbank.voucher;
+package com.abcbank.topup.api.models;
 
 public class VoucherData {
     private String code;

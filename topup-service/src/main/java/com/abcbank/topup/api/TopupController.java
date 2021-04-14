@@ -38,7 +38,6 @@ public class TopupController {
         AtomicBoolean tooLong = new AtomicBoolean(false);
         WebAsyncTask<String> asyncTask = new WebAsyncTask<>(TIME_OUT, "asyncExecutor", () -> {
             TopupPurchaseResponse response = topupApi.purchase(username, request);
-            voucherStore.storeVoucherAsync(username, request, response);
             if (tooLong.get()) {
                 sendSMSAsync(username, request, response);
             }

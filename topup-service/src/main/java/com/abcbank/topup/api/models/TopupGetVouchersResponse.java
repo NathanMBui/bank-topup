@@ -1,16 +1,25 @@
-package com.abcbank.topup.models;
+package com.abcbank.topup.api.models;
 
 import java.util.Collection;
 
 public class TopupGetVouchersResponse {
 
-    private Collection<String> vouchers;
+    private String phoneNumber;
+    private Collection<VoucherData> vouchers;
 
-    public Collection<String> getVouchers() {
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Collection<VoucherData> getVouchers() {
         return vouchers;
     }
 
-    public void setVouchers(Collection<String> vouchers) {
+    public void setVouchers(Collection<VoucherData> vouchers) {
         this.vouchers = vouchers;
     }
 }
