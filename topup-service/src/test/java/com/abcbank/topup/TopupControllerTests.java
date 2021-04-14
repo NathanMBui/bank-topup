@@ -19,27 +19,13 @@ import java.net.URISyntaxException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class TopupApplicationTests {
+class TopupControllerTests {
 
 	@Autowired
 	private TestRestTemplate restTemplate;
 
 	@LocalServerPort
 	int randomServerPort;
-
-	@Test
-	void givenValidRequest_whenPurchase_thenReturnVoucherCode() throws URISyntaxException {
-		URI uri = buildURI();
-		TopupPurchaseRequest purchaseDetails = new TopupPurchaseRequest("transactionId", "9876543210", "Viettel", "ST90");
-		HttpEntity<TopupPurchaseRequest> request = new HttpEntity<>(purchaseDetails);
-
-		ResponseEntity<TopupPurchaseResponse> response = restTemplate.postForEntity(uri, request, TopupPurchaseResponse.class);
-		TopupPurchaseResponse responseBody = response.getBody();
-
-		Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
-		Assert.assertNotNull("body null", responseBody);
-		Assert.assertNotNull("voucher code null", responseBody.getCode());
-	}
 
 	@Test
 	void givenInvalidPhone_whenPurchase_thenReturnBadRequest() throws URISyntaxException  {

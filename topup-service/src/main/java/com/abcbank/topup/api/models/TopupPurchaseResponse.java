@@ -1,40 +1,29 @@
 package com.abcbank.topup.api.models;
 
 public class TopupPurchaseResponse {
-    private String code;
-    private String type;
-    private String provider;
-    private String description;
+    private String message;
+    private String voucherCode;
 
-    public String getCode() {
-        return code;
+    public TopupPurchaseResponse(){}
+
+    public TopupPurchaseResponse(String message, String voucherCode) {
+        this.message = message;
+        this.voucherCode = voucherCode;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public String getMessage() {
+        return message;
     }
 
-    public String getType() {
-        return type;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public String getVoucherCode() {
+        return voucherCode;
     }
 
-    public String getProvider() {
-        return provider;
-    }
-
-    public void setProvider(String provider) {
-        this.provider = provider;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setVoucherCode(String voucherCode) {
+        this.voucherCode = voucherCode;
     }
 }

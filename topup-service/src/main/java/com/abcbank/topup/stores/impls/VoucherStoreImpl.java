@@ -1,7 +1,6 @@
 package com.abcbank.topup.stores.impls;
 
 import com.abcbank.topup.api.models.TopupPurchaseRequest;
-import com.abcbank.topup.api.models.TopupPurchaseResponse;
 import com.abcbank.topup.api.models.VoucherData;
 import com.abcbank.topup.entities.User;
 import com.abcbank.topup.entities.Voucher;
@@ -9,16 +8,16 @@ import com.abcbank.topup.repositories.UserRepository;
 import com.abcbank.topup.repositories.VoucherRepository;
 import com.abcbank.topup.stores.VoucherStore;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 /**
  * xxxStore is a helper class to decouple database from business logic
  */
+@Service
 public class VoucherStoreImpl implements VoucherStore {
 
     @Autowired
@@ -28,14 +27,14 @@ public class VoucherStoreImpl implements VoucherStore {
     private VoucherRepository voucherRepository;
 
     @Override
-    public void storeVoucherAsync(String username, TopupPurchaseRequest request, TopupPurchaseResponse response) {
+    public void storeVoucher(String username, TopupPurchaseRequest request, VoucherData voucherData) {
         User user = findUser(username);
         Voucher voucher = new Voucher();
-        voucher.setCode(response.getCode());
-        voucher.setType(response.getType());
+        voucher.setCode(voucherData.getCode());
+        voucher.setType(voucherData.getType());
         voucher.setPhone(request.getPhoneNumber());
-        voucher.setProvider(response.getProvider());
-        voucher.setDescription(response.getDescription());
+        voucher.setProvider(voucherData.getProvider());
+        voucher.setDescription(voucherData.getDescription());
         voucher.setUser(user);
         voucherRepository.save(voucher);
     }

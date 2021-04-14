@@ -1,9 +1,12 @@
 package com.abcbank.topup.api;
 
 
+import org.springframework.stereotype.Service;
+
 /**
  * TODO should load from config or sorts of...
  */
+@Service
 public class ExternalUrl {
 
     private String purchaseVoucherUrl = "http://localhost:8081/vouchers";

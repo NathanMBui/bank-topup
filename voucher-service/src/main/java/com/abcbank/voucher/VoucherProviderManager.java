@@ -17,8 +17,8 @@ public class VoucherProviderManager {
             this.name = name;
         }
 
-        public VoucherData getVoucher(String phoneNumber, String type) {
-            VoucherData data = new VoucherData();
+        public VoucherResponse getVoucher(String phoneNumber, String type) {
+            VoucherResponse data = new VoucherResponse();
             long randomNumber = System.currentTimeMillis();
             data.setCode(String.valueOf(randomNumber));
             data.setDescription("2000MB for 30 days");

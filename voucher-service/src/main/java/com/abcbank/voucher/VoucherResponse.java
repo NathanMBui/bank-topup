@@ -1,6 +1,6 @@
 package com.abcbank.voucher;
 
-public class VoucherData {
+public class VoucherResponse {
     private String code;
     private String type;
     private String provider;

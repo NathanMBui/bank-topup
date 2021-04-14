@@ -8,4 +8,5 @@ import java.util.List;
 public interface VoucherRepository extends JpaRepository<Voucher, Integer> {
 
     List<Voucher> findByUserIdAndPhone(long userId, String phone);
+    Voucher findByCode(String code);
 }

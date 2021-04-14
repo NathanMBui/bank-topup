@@ -34,27 +34,27 @@ public class TopupController {
     private VoucherStore voucherStore;
 
     @PostMapping(path = "/topup")
-    public WebAsyncTask<String> purchase(@RequestHeader("username") String username, @Valid @RequestBody TopupPurchaseRequest request) {
+    public WebAsyncTask<TopupPurchaseResponse> purchase(@RequestHeader("username") String username, @Valid @RequestBody TopupPurchaseRequest request) {
         AtomicBoolean tooLong = new AtomicBoolean(false);
-        WebAsyncTask<String> asyncTask = new WebAsyncTask<>(TIME_OUT, "asyncExecutor", () -> {
-            TopupPurchaseResponse response = topupApi.purchase(username, request);
+        WebAsyncTask<TopupPurchaseResponse> asyncTask = new WebAsyncTask<>(TIME_OUT, "asyncExecutor", () -> {
+            VoucherData voucherData = topupApi.purchase(username, request);
             if (tooLong.get()) {
-                sendSMSAsync(username, request, response);
+                sendSMSAsync(username, request, voucherData);
             }
-            return response.getCode();
+            return new TopupPurchaseResponse("success", voucherData.getCode());
         });
         asyncTask.onTimeout(() -> {
             tooLong.set(true);
-            return "Request is being processed within 30 seconds";
+            return new TopupPurchaseResponse("Request is being processed within 30 seconds", "");
         });
-        asyncTask.onError(() -> "error");
+        asyncTask.onError(() -> new TopupPurchaseResponse("Request error", ""));
         return asyncTask;
     }
 
     @Async
-    private void sendSMSAsync(String username, TopupPurchaseRequest request, TopupPurchaseResponse response) {
+    private void sendSMSAsync(String username, TopupPurchaseRequest request, VoucherData voucherData) {
         //TODO-send voucher code via SMS
-        System.out.println("Sending sms = " + response.getCode());
+        System.out.println("Sending sms = " + voucherData.getCode());
     }
 
     @GetMapping(path = "/topup")
