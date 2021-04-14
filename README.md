@@ -13,9 +13,9 @@
 ### Solution Design
   #### Purchase Data
   1. Website call **TopupService** with data (paymentId, phoneNumber, provider, dataPlan) to get a voucher code (Assume payment has been done before)
-  2. **TopupService** send an <ins>async</ins> request to *VoucherService* with data (phoneNumber, provider, dataPlan)
-  3. **VoucherService** find a 3rd Party name by *provider* and send a request to get Voucher code.
-    3a. If 3rd Party return a voucher code in 3 seconds, then return the code to the website.
+  2. **TopupService** send an <ins>async</ins> request to **VoucherService** with data (phoneNumber, provider, dataPlan)
+  3. **VoucherService** find a 3rd Party named by **provider** and send a request to get Voucher code.</br>
+    3a. If 3rd Party return a voucher code in 3 seconds, then return the code to the website.</br>
     3b. Otherwise return a message that says the request is being processed within 30 seconds. Send the code later via SMS.
   4. Store the voucher code to database.
 
@@ -45,8 +45,8 @@ mvn clean install
 #### How to run
 Order | Service | Running Port | Command line
 --- | --- | --- | --- 
-`1` | voucher-service | 8081 | java -jar [bank-topup]/target/voucher-service-0.0.1.jar |
-`2` | topup-service | 8080 | java -jar [bank-topup]/target/topup-service-0.0.1.jar |
+`1` | voucher-service | 8081 | java -jar target/voucher-service-0.0.1.jar |
+`2` | topup-service | 8080 | java -jar target/topup-service-0.0.1.jar |
 
 #### How to use
 Using below curl commands
