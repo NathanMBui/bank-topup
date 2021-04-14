@@ -58,10 +58,10 @@ public class TopupController {
     }
 
     @GetMapping(path = "/topup")
-    public TopupGetVouchersResponse getVouchers(@RequestHeader("username") String username, @Valid @RequestBody TopupGetVouchersRequest request) {
-        Collection<VoucherData> vouchers = voucherStore.getVouchers(username, request.getPhoneNumber());
+    public TopupGetVouchersResponse getVouchers(@RequestHeader("username") String username, @RequestParam String phoneNumber) {
+        Collection<VoucherData> vouchers = voucherStore.getVouchers(username, phoneNumber);
         TopupGetVouchersResponse response = new TopupGetVouchersResponse();
-        response.setPhoneNumber(request.getPhoneNumber());
+        response.setPhoneNumber(phoneNumber);
         response.setVouchers(vouchers);
         return response;
     }
