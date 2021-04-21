@@ -9,7 +9,7 @@ import java.util.concurrent.Executor;
 
 @Configuration
 @EnableAsync
-public class AsynchConfiguration 
+public class AsyncConfiguration
 {
     @Bean(name = "asyncExecutor")
     public Executor asyncExecutor()
@@ -18,7 +18,7 @@ public class AsynchConfiguration
         executor.setCorePoolSize(4);
         executor.setMaxPoolSize(4);
         executor.setQueueCapacity(100);
-        executor.setThreadNamePrefix("AsynchThread-");
+        executor.setThreadNamePrefix("AsyncThread-");
         executor.initialize();
         return executor;
     }

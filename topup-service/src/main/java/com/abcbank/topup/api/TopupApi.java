@@ -6,5 +6,5 @@ import java.util.Collection;
 
 public interface TopupApi {
     VoucherData purchase(String username, TopupPurchaseRequest request);
-    Collection<VoucherData> getVouchers(String username, TopupGetVouchersRequest request);
+    Collection<VoucherData> getVouchers(String username, String phoneNumber);
 }

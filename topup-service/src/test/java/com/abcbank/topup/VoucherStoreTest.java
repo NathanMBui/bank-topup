@@ -10,9 +10,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Collection;
+import java.util.concurrent.TimeUnit;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -24,8 +26,11 @@ public class VoucherStoreTest {
     @Autowired
     VoucherRepository voucherRepository;
 
+    @Autowired
+    private ThreadPoolTaskExecutor executor;
+
     @Test
-    public void givenVoucherCode_whenStore_thenFoundExactCode() {
+    public void givenVoucherCode_whenStore_thenFoundExactCode() throws InterruptedException {
         String username = "ABC";
         String phone = "1234567890";
         String expectedCode = "123";
@@ -35,8 +40,8 @@ public class VoucherStoreTest {
         data.setProvider(request.getProvider());
         data.setType(request.getType());
 
-        voucherStore.storeVoucher(username, request, data);
-
+        voucherStore.storeVoucherAsync(username, request, data);
+        executor.getThreadPoolExecutor().awaitTermination(1, TimeUnit.SECONDS);
         Collection<VoucherData> vouchers = voucherStore.getVouchers(username, phone);
         Assert.assertFalse(vouchers.isEmpty());
         Voucher expectedVoucher = voucherRepository.findByCode(expectedCode);
