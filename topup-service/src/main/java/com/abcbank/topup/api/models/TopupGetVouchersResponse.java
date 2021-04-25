@@ -1,25 +1,12 @@
 package com.abcbank.topup.api.models;
 
+import lombok.Data;
+
 import java.util.Collection;
 
+@Data
 public class TopupGetVouchersResponse {
 
     private String phoneNumber;
     private Collection<VoucherData> vouchers;
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public Collection<VoucherData> getVouchers() {
-        return vouchers;
-    }
-
-    public void setVouchers(Collection<VoucherData> vouchers) {
-        this.vouchers = vouchers;
-    }
 }

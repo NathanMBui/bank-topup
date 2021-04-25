@@ -1,7 +1,9 @@
 package com.abcbank.topup.api;
 
 import com.abcbank.topup.api.models.*;
+import com.abcbank.topup.authentication.AuthenticationFacade;
 import com.abcbank.topup.stores.VoucherStore;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -33,11 +35,16 @@ public class TopupController {
     @Autowired
     private VoucherStore voucherStore;
 
+    @Autowired
+    private AuthenticationFacade authenticationFacade;
+
     @PostMapping(path = "/topup")
-    public WebAsyncTask<TopupPurchaseResponse> purchase(@RequestHeader("username") String username, @Valid @RequestBody TopupPurchaseRequest request) {
-        AtomicBoolean tooLong = new AtomicBoolean(false);
-        WebAsyncTask<TopupPurchaseResponse> asyncTask = new WebAsyncTask<>(TIME_OUT, "asyncExecutor", () -> {
-            VoucherData voucherData = topupApi.purchase(username, request);
+    public WebAsyncTask<TopupPurchaseResponse> purchase(@Valid @RequestBody TopupPurchaseRequest request) {
+        val username = authenticationFacade.getUsername();
+        System.out.println("username="+username);
+        val tooLong = new AtomicBoolean(false);
+        val asyncTask = new WebAsyncTask<>(TIME_OUT, "asyncExecutor", () -> {
+            val voucherData = topupApi.purchase(username, request);
             if (tooLong.get()) {
                 sendSMSAsync(username, request, voucherData);
             }
@@ -58,9 +65,10 @@ public class TopupController {
     }
 
     @GetMapping(path = "/topup")
-    public TopupGetVouchersResponse getVouchers(@RequestHeader("username") String username, @RequestParam String phoneNumber) {
-        Collection<VoucherData> vouchers = topupApi.getVouchers(username, phoneNumber);
-        TopupGetVouchersResponse response = new TopupGetVouchersResponse();
+    public TopupGetVouchersResponse getVouchers(@RequestParam String phoneNumber) {
+        val username = authenticationFacade.getUsername();
+        val vouchers = topupApi.getVouchers(username, phoneNumber);
+        val response = new TopupGetVouchersResponse();
         response.setPhoneNumber(phoneNumber);
         response.setVouchers(vouchers);
         return response;
