@@ -1,4 +1,4 @@
-package com.abcbank.topup.api.models;
+package com.abcbank.topup.controller.models;
 
 import lombok.Data;
 

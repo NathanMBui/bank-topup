@@ -1,9 +1,9 @@
-package com.abcbank.topup.api.models;
+package com.abcbank.topup.controller.models;
 
 import lombok.Data;
 
 @Data
-public class VoucherData {
+public class VoucherDTO {
     private String code;
     private String type;
     private String provider;

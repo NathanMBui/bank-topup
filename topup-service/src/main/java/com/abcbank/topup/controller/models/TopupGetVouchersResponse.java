@@ -1,4 +1,4 @@
-package com.abcbank.topup.api.models;
+package com.abcbank.topup.controller.models;
 
 import lombok.Data;
 
@@ -8,5 +8,5 @@ import java.util.Collection;
 public class TopupGetVouchersResponse {
 
     private String phoneNumber;
-    private Collection<VoucherData> vouchers;
+    private Collection<VoucherDTO> vouchers;
 }
