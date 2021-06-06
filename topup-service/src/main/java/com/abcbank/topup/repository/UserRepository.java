@@ -1,6 +1,6 @@
-package com.abcbank.topup.repositories;
+package com.abcbank.topup.repository;
 
-import com.abcbank.topup.entities.User;
+import com.abcbank.topup.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Integer> {

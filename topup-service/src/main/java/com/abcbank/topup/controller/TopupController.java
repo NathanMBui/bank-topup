@@ -1,21 +1,22 @@
-package com.abcbank.topup.api;
+package com.abcbank.topup.controller;
 
-import com.abcbank.topup.api.models.*;
-import com.abcbank.topup.authentication.AuthenticationFacade;
-import com.abcbank.topup.stores.VoucherStore;
+import com.abcbank.topup.controller.model.TopupGetVouchersResponse;
+import com.abcbank.topup.controller.model.TopupPurchaseRequest;
+import com.abcbank.topup.controller.model.TopupPurchaseResponse;
+import com.abcbank.topup.dto.VoucherDTO;
+import com.abcbank.topup.service.topup.TopupApi;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.security.core.Authentication;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.request.async.WebAsyncTask;
 
 import javax.validation.Valid;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -27,20 +28,11 @@ public class TopupController {
     private static final long TIME_OUT = 3 * 1000L;
 
     @Autowired
-    private RestTemplate restTemplate;
-
-    @Autowired
     private TopupApi topupApi;
 
-    @Autowired
-    private VoucherStore voucherStore;
-
-    @Autowired
-    private AuthenticationFacade authenticationFacade;
-
     @PostMapping(path = "/topup")
-    public WebAsyncTask<TopupPurchaseResponse> purchase(@Valid @RequestBody TopupPurchaseRequest request) {
-        val username = authenticationFacade.getUsername();
+    public WebAsyncTask<TopupPurchaseResponse> purchase(@Valid @RequestBody TopupPurchaseRequest request, Authentication authentication) {
+        val username = authentication.getName();
         System.out.println("username="+username);
         val tooLong = new AtomicBoolean(false);
         val asyncTask = new WebAsyncTask<>(TIME_OUT, "asyncExecutor", () -> {
@@ -59,14 +51,14 @@ public class TopupController {
     }
 
     @Async
-    private void sendSMSAsync(String username, TopupPurchaseRequest request, VoucherData voucherData) {
+    private void sendSMSAsync(String username, TopupPurchaseRequest request, VoucherDTO voucherDTO) {
         //TODO-send voucher code via SMS
-        System.out.println("Sending sms = " + voucherData.getCode());
+        System.out.println("Sending sms = " + voucherDTO.getCode());
     }
 
     @GetMapping(path = "/topup")
-    public TopupGetVouchersResponse getVouchers(@RequestParam String phoneNumber) {
-        val username = authenticationFacade.getUsername();
+    public TopupGetVouchersResponse getVouchers(@RequestParam String phoneNumber, Authentication authentication) {
+        val username = authentication.getName();
         val vouchers = topupApi.getVouchers(username, phoneNumber);
         val response = new TopupGetVouchersResponse();
         response.setPhoneNumber(phoneNumber);

@@ -1,7 +1,7 @@
 package com.abcbank.topup;
 
-import com.abcbank.topup.api.models.TopupPurchaseRequest;
-import com.abcbank.topup.api.models.TopupPurchaseResponse;
+import com.abcbank.topup.controller.model.TopupPurchaseRequest;
+import com.abcbank.topup.controller.model.TopupPurchaseResponse;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +13,6 @@ import org.springframework.http.*;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;

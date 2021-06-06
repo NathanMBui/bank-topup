@@ -1,12 +1,12 @@
-package com.abcbank.topup.stores.impls;
+package com.abcbank.topup.store.impl;
 
-import com.abcbank.topup.api.models.TopupPurchaseRequest;
-import com.abcbank.topup.api.models.VoucherData;
-import com.abcbank.topup.entities.User;
-import com.abcbank.topup.entities.Voucher;
-import com.abcbank.topup.repositories.UserRepository;
-import com.abcbank.topup.repositories.VoucherRepository;
-import com.abcbank.topup.stores.VoucherStore;
+import com.abcbank.topup.controller.model.TopupPurchaseRequest;
+import com.abcbank.topup.dto.VoucherDTO;
+import com.abcbank.topup.entity.User;
+import com.abcbank.topup.entity.Voucher;
+import com.abcbank.topup.repository.UserRepository;
+import com.abcbank.topup.repository.VoucherRepository;
+import com.abcbank.topup.store.VoucherStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,24 +27,24 @@ public class VoucherStoreImpl implements VoucherStore {
     private VoucherRepository voucherRepository;
 
     @Override
-    public void storeVoucherAsync(String username, TopupPurchaseRequest request, VoucherData voucherData) {
+    public void storeVoucherAsync(String username, TopupPurchaseRequest request, VoucherDTO voucherDTO) {
         User user = findUser(username);
         Voucher voucher = new Voucher();
-        voucher.setCode(voucherData.getCode());
-        voucher.setType(voucherData.getType());
+        voucher.setCode(voucherDTO.getCode());
+        voucher.setType(voucherDTO.getType());
         voucher.setPhone(request.getPhoneNumber());
-        voucher.setProvider(voucherData.getProvider());
-        voucher.setDescription(voucherData.getDescription());
+        voucher.setProvider(voucherDTO.getProvider());
+        voucher.setDescription(voucherDTO.getDescription());
         voucher.setUser(user);
         voucherRepository.save(voucher);
     }
 
     @Override
-    public Collection<VoucherData> getVouchers(String username, String phoneNumber) {
+    public Collection<VoucherDTO> getVouchers(String username, String phoneNumber) {
         User user = findUser(username);
         List<Voucher> vouchers = voucherRepository.findByUserIdAndPhone(user.getId(), phoneNumber);
         return vouchers.stream().map((it) -> {
-            VoucherData data = new VoucherData();
+            VoucherDTO data = new VoucherDTO();
             data.setCode(it.getCode());
             data.setType(it.getType());
             data.setProvider(it.getProvider());

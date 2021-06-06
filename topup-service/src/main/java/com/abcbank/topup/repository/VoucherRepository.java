@@ -1,6 +1,6 @@
-package com.abcbank.topup.repositories;
+package com.abcbank.topup.repository;
 
-import com.abcbank.topup.entities.Voucher;
+import com.abcbank.topup.entity.Voucher;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

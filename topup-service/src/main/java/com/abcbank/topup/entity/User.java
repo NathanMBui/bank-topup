@@ -1,4 +1,4 @@
-package com.abcbank.topup.entities;
+package com.abcbank.topup.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +22,6 @@ public class User {
     @NotBlank
     private String name;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<Voucher> vouchers;
 }

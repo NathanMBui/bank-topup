@@ -1,4 +1,4 @@
-package com.abcbank.topup.authentication;
+package com.abcbank.topup.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
