@@ -1,12 +1,12 @@
-package com.abcbank.topup.stores.impls;
+package com.abcbank.topup.store.impl;
 
-import com.abcbank.topup.controller.models.TopupPurchaseRequest;
+import com.abcbank.topup.controller.model.TopupPurchaseRequest;
 import com.abcbank.topup.dto.VoucherDTO;
-import com.abcbank.topup.entities.User;
-import com.abcbank.topup.entities.Voucher;
-import com.abcbank.topup.repositories.UserRepository;
-import com.abcbank.topup.repositories.VoucherRepository;
-import com.abcbank.topup.stores.VoucherStore;
+import com.abcbank.topup.entity.User;
+import com.abcbank.topup.entity.Voucher;
+import com.abcbank.topup.repository.UserRepository;
+import com.abcbank.topup.repository.VoucherRepository;
+import com.abcbank.topup.store.VoucherStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
