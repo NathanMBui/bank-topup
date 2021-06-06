@@ -50,25 +50,32 @@ Order | Service | Running Port | Command line
 
 #### How to use
 Using below curl commands
-1. Purchase Voucher
+0. Login
+```
+curl --location --request POST 'http://localhost:8080/login' \
+--form 'username="admin"' \
+--form 'password="admin"'
+```
+copy the Headers["Authentication"] value to use below commands
+
+2. Purchase Voucher
 ```
 curl --location --request POST 'http://localhost:8080/topup' \
 --header 'Content-Type: application/json' \
---header 'username: xyz' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyMzgzNDcwOH0.aKO-VoikdEJD1yFEVCjFD885oUjvh2JTuNWsd6XkACwW3LZHQT1eK9n5F9Am5_RpAMgmyrcMtM68nFuuhTl9TA' \
 --data-raw '{"paymentId": "p123", "phoneNumber": "1234567890", "provider": "Viettel", "type": "ST90"}'
 ```
 2. Get list of Voucher by phone number
 ```
 curl --location --request GET 'http://localhost:8080/topup?phoneNumber=1234567890' \
 --header 'Content-Type: application/json' \
---header 'username: xyz' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyMzgzNDcwOH0.aKO-VoikdEJD1yFEVCjFD885oUjvh2JTuNWsd6XkACwW3LZHQT1eK9n5F9Am5_RpAMgmyrcMtM68nFuuhTl9TA' \
 --data-raw ''
 ```
 3. Get voucher code (not allowed to be called directly from website in production)
 ```
 curl --location --request POST 'http://localhost:8081/vouchers' \
 --header 'Content-Type: application/json' \
---header 'username: xyz' \
 --data-raw '{"phoneNumber": "1234567890", "provider": "Viettel", "type": "ST70"}'
 ```
 
