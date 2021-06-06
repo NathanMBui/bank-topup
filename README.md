@@ -77,6 +77,7 @@ curl --location --request POST 'http://localhost:8081/vouchers' \
 
 Method | URI | Description | Parameters | Request JSON | Response JSON
 ------ | --- | ----------- | ---------- | ------------ | -------------
+`POST` | */login* | Login | | | Headers["Authorization"]
 `GET` | */topup* | List of vouchers | phoneNumber | | {"phoneNumber":(string), "vouchers": [{"code":(string), "type":(string), "provider":(string), "description":(string)}]}
 `POST` | */topup* | Purchase a voucher | | {"paymentId":(string), "phone": (string), "provider": (string), "type": (string)} | {"message":(string), "voucherCode": (string)} |
 
@@ -87,7 +88,6 @@ Method | URI | Description | Parameters | Request JSON | Response JSON
 `POST` | */vouchers* | Get a voucher from 3rd party| | {"phoneNumber": (string), "provider": (string), "type": (string)} | {"code":(string), "type":(string), "provider":(string), "description":(string)} |
 
 ### TODO
-1. Authentication + Authorization (Spring Security)
-2. Cache (Redis) user data, list of voucher
-3. Support pagination when get list of voucher
-4. Use Service Registry to manage 3rd parties api
+1. Cache (Redis) user data, list of voucher
+2. Support pagination when get list of voucher
+3. Use Service Registry to manage 3rd parties api
