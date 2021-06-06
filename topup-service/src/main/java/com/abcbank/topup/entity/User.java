@@ -1,4 +1,4 @@
-package com.abcbank.topup.entities;
+package com.abcbank.topup.entity;
 
 import lombok.Getter;
 import lombok.Setter;

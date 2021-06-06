@@ -1,7 +1,7 @@
-package com.abcbank.topup.stores;
+package com.abcbank.topup.store;
 
-import com.abcbank.topup.controller.models.TopupPurchaseRequest;
-import com.abcbank.topup.controller.models.VoucherDTO;
+import com.abcbank.topup.controller.model.TopupPurchaseRequest;
+import com.abcbank.topup.dto.VoucherDTO;
 import org.springframework.scheduling.annotation.Async;
 
 import java.util.Collection;

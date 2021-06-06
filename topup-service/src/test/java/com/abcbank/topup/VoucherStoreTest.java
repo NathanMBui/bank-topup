@@ -1,10 +1,10 @@
 package com.abcbank.topup;
 
-import com.abcbank.topup.controller.models.TopupPurchaseRequest;
-import com.abcbank.topup.controller.models.VoucherDTO;
-import com.abcbank.topup.entities.Voucher;
-import com.abcbank.topup.repositories.VoucherRepository;
-import com.abcbank.topup.stores.VoucherStore;
+import com.abcbank.topup.controller.model.TopupPurchaseRequest;
+import com.abcbank.topup.dto.VoucherDTO;
+import com.abcbank.topup.entity.Voucher;
+import com.abcbank.topup.repository.VoucherRepository;
+import com.abcbank.topup.store.VoucherStore;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

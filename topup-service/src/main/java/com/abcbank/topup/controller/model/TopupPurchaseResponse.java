@@ -1,4 +1,4 @@
-package com.abcbank.topup.controller.models;
+package com.abcbank.topup.controller.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,9 +1,10 @@
 package com.abcbank.topup.controller;
 
-import com.abcbank.topup.controller.models.TopupGetVouchersResponse;
-import com.abcbank.topup.controller.models.TopupPurchaseRequest;
-import com.abcbank.topup.controller.models.TopupPurchaseResponse;
-import com.abcbank.topup.controller.models.VoucherDTO;
+import com.abcbank.topup.controller.model.TopupGetVouchersResponse;
+import com.abcbank.topup.controller.model.TopupPurchaseRequest;
+import com.abcbank.topup.controller.model.TopupPurchaseResponse;
+import com.abcbank.topup.dto.VoucherDTO;
+import com.abcbank.topup.service.topup.TopupApi;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

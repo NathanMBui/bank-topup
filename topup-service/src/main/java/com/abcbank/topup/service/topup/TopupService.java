@@ -1,8 +1,9 @@
-package com.abcbank.topup.controller;
+package com.abcbank.topup.service.topup;
 
-import com.abcbank.topup.controller.models.TopupPurchaseRequest;
-import com.abcbank.topup.controller.models.VoucherDTO;
-import com.abcbank.topup.stores.VoucherStore;
+import com.abcbank.topup.controller.model.TopupPurchaseRequest;
+import com.abcbank.topup.dto.VoucherDTO;
+import com.abcbank.topup.service.ExternalUrl;
+import com.abcbank.topup.store.VoucherStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

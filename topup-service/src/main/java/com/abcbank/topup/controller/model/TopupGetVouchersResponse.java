@@ -1,5 +1,6 @@
-package com.abcbank.topup.controller.models;
+package com.abcbank.topup.controller.model;
 
+import com.abcbank.topup.dto.VoucherDTO;
 import lombok.Data;
 
 import java.util.Collection;

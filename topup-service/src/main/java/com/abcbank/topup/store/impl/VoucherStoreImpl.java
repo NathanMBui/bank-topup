@@ -1,7 +1,7 @@
 package com.abcbank.topup.stores.impls;
 
 import com.abcbank.topup.controller.models.TopupPurchaseRequest;
-import com.abcbank.topup.controller.models.VoucherDTO;
+import com.abcbank.topup.dto.VoucherDTO;
 import com.abcbank.topup.entities.User;
 import com.abcbank.topup.entities.Voucher;
 import com.abcbank.topup.repositories.UserRepository;
