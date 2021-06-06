@@ -1,7 +1,7 @@
 package com.abcbank.topup;
 
-import com.abcbank.topup.api.models.TopupPurchaseRequest;
-import com.abcbank.topup.api.models.VoucherData;
+import com.abcbank.topup.controller.models.TopupPurchaseRequest;
+import com.abcbank.topup.controller.models.VoucherDTO;
 import com.abcbank.topup.entities.Voucher;
 import com.abcbank.topup.repositories.VoucherRepository;
 import com.abcbank.topup.stores.VoucherStore;
@@ -35,14 +35,14 @@ public class VoucherStoreTest {
         String phone = "1234567890";
         String expectedCode = "123";
         TopupPurchaseRequest request = new TopupPurchaseRequest("paymentId", phone, "Viettel", "ABC");
-        VoucherData data = new VoucherData();
+        VoucherDTO data = new VoucherDTO();
         data.setCode(expectedCode);
         data.setProvider(request.getProvider());
         data.setType(request.getType());
 
         voucherStore.storeVoucherAsync(username, request, data);
         executor.getThreadPoolExecutor().awaitTermination(1, TimeUnit.SECONDS);
-        Collection<VoucherData> vouchers = voucherStore.getVouchers(username, phone);
+        Collection<VoucherDTO> vouchers = voucherStore.getVouchers(username, phone);
         Assert.assertFalse(vouchers.isEmpty());
         Voucher expectedVoucher = voucherRepository.findByCode(expectedCode);
         Assert.assertNotNull(expectedVoucher);

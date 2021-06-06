@@ -1,7 +1,7 @@
-package com.abcbank.topup.api;
+package com.abcbank.topup.controller;
 
-import com.abcbank.topup.api.models.TopupPurchaseRequest;
-import com.abcbank.topup.api.models.VoucherData;
+import com.abcbank.topup.controller.models.TopupPurchaseRequest;
+import com.abcbank.topup.controller.models.VoucherDTO;
 import com.abcbank.topup.stores.VoucherStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,14 +22,14 @@ public class TopupService implements TopupApi {
     private VoucherStore voucherStore;
 
     @Override
-    public VoucherData purchase(String username, TopupPurchaseRequest request) {
-        VoucherData response = restTemplate.postForObject(externalUrl.getPurchaseVoucherUrl(), request, VoucherData.class);
+    public VoucherDTO purchase(String username, TopupPurchaseRequest request) {
+        VoucherDTO response = restTemplate.postForObject(externalUrl.getPurchaseVoucherUrl(), request, VoucherDTO.class);
         voucherStore.storeVoucherAsync(username, request, response);
         return response;
     }
 
     @Override
-    public Collection<VoucherData> getVouchers(String username, String phoneNumber) {
+    public Collection<VoucherDTO> getVouchers(String username, String phoneNumber) {
         return voucherStore.getVouchers(username, phoneNumber);
     }
 }
